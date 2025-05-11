@@ -25,7 +25,7 @@
                                         Return to Dashboard
                                     </a> -->
                                     <p class="lead">Please input password to connect.</p>
-                                    <form id="passwordForm">
+                                    <form id="passwordForm" method="POST" action="/validate-password">
                                         <div class="input-group flex-nowrap mb-2">
                                             <input type="password" id="passwordInput" class="form-control" placeholder="Password" aria-label="Password"
                                                 aria-describedby="togglePassword" name="password" required>
@@ -35,6 +35,12 @@
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                         </div>
                                         <div id="errorMsg" class="text-danger small"></div>
+                                        <% if (typeof error !=="undefined" ) { %>
+                                            <div class="text-danger">
+                                                <%= error %>
+                                            </div>
+                                            <% } %>
+
                                     </form>
 
                                 </div>
@@ -60,37 +66,5 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script>
-            // Handle submit and show 'Password fails' before refreshing
-            document.getElementById("passwordForm").addEventListener("submit", function (e) {
-                e.preventDefault();
-
-                const errorMsg = document.getElementById("errorMsg");
-                errorMsg.textContent = "Password fails";
-
-                // Wait 1.5 seconds then refresh
-                setTimeout(() => {
-                    location.reload();
-                }, 1500);
-            });
-
-            // Toggle password visibility
-            document.getElementById("togglePassword").addEventListener("click", function () {
-                const passwordInput = document.getElementById("passwordInput");
-                const eyeIcon = document.getElementById("eyeIcon");
-
-                if (passwordInput.type === "password") {
-                    passwordInput.type = "text";
-                    eyeIcon.classList.remove("fa-eye");
-                    eyeIcon.classList.add("fa-eye-slash");
-                } else {
-                    passwordInput.type = "password";
-                    eyeIcon.classList.remove("fa-eye-slash");
-                    eyeIcon.classList.add("fa-eye");
-                }
-            });
-        </script>
-
-
     </body>
 </html>
