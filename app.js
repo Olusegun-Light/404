@@ -16,7 +16,7 @@ app.use(express.static("assets"));
 
 app.post("/validate-password", (req, res) => {
   const { password } = req.body;
-  if (password === "K#V6rnDn&5n6Z*") {
+  if (password === "A968i2oKy6MPkM") {
     res.redirect("/dashboard");
   } else {
     res.render("404", { title: "404 Page", error: "Password fails" });
